@@ -1,5 +1,20 @@
+import 'dart:convert';
 import 'homepage.dart';
+import 'signup.dart'; // Import your SignupPage
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: LoginPage(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -8,118 +23,155 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
+// ... (Your existing imports)
+
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>(); // Add a GlobalKey for the form
+
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  bool showPass = false;
+
+  Future<void> _login() async {
+    final response = await http.post(
+      Uri.parse('http://localhost/sean/login.php'),
+      body: {
+        'username': usernameController.text,
+        'password': passwordController.text,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final result = jsonDecode(response.body);
+      if (result['message'] == 'Login successful') {
+        // Navigate to the next screen (Firstpage)
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Firstpage()),
+        );
+      } else {
+        // Handle login failure
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Incorrect username or password'),
+          ),
+        );
+      }
+    } else {
+      // Handle errors
+      print('Error: ${response.statusCode}');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Login Page'),
-          backgroundColor: Color.fromARGB(244, 101, 214, 101),
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 0, 102, 255),
+        title: Text(
+          'Login Page',
+          style: TextStyle(color: Color.fromARGB(244, 255, 255, 255)),
         ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Image(
-                  image: AssetImage('images/images.png'),
-                  height: 100,
-                  width: 100,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          // Wrap the Form widget around your Column
+          key: _formKey, // Set the key for the form
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image(
+                image: AssetImage('images/icon.jpg'),
+                height: 100,
+                width: 100,
+              ),
+              TextFormField(
+                style: TextStyle(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  fontFamily: 'RobotoMono',
                 ),
-                TextFormField(
-                  style: const TextStyle(
-                    fontFamily: 'RobotoMono',
-                    color: Colors.white,
-                  ),
-                  controller: _usernameController,
-                  decoration: const InputDecoration(
-                    labelText: 'Username',
+                controller: usernameController,
+                decoration: InputDecoration(
+                  labelText: 'Username',
+                  labelStyle: TextStyle(
+                      color: const Color.fromARGB(255, 255, 255, 255)),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your username';
+                  }
+                  return null;
+                },
+                obscureText: false, // Set to false to show the entered text
+              ),
+              TextFormField(
+                style: TextStyle(
+                  color: const Color.fromARGB(255, 255, 255, 255),
+                  fontFamily: 'RobotoMono',
+                ),
+                controller: passwordController,
+                decoration: InputDecoration(
+                    labelText: 'Password',
                     labelStyle: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'RobotoMono',
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your username';
-                    } else if (!RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$')
-                        .hasMatch(value)) {
-                      return 'Invalid email address';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  style: const TextStyle(
+                        color: const Color.fromARGB(255, 255, 255, 255)),
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            showPass = !showPass;
+                          });
+                        },
+                        icon: Icon(!showPass
+                            ? Icons.visibility
+                            : Icons.visibility_off))),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  return null;
+                },
+                obscureText: showPass,
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 1, 255, 255)),
+                onPressed: () {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    // Form is valid, perform login
+                    _login();
+                  }
+                },
+                child: Text(
+                  'Login',
+                  style: TextStyle(
+                    color: const Color.fromARGB(255, 255, 255, 255),
                     fontFamily: 'RobotoMono',
-                    color: Colors.white,
-                  ),
-                  controller: _passwordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                      labelText: 'Password',
-                      labelStyle: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'RobotoMono',
-                      )),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
-                    } else if (_passwordController.text.length < 6) {
-                      return 'Password Length should be more than 6 characters';
-                    } else if (!RegExp(
-                            r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_])[A-Za-z\d@$!%*?&]+$')
-                        .hasMatch(value)) {
-                      return 'Password must meet the requirement';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 0, 128, 57)),
-                  onPressed: () {
-                    if (_formKey.currentState?.validate() == true) {
-                      // Check for specific username and password
-                      if (_usernameController.text == "Benedick@gmail.com" &&
-                          _passwordController.text == "Fernandez@14") {
-                        // Successful login
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Firstpage()),
-                        );
-                      } else {
-                        // Incorrect username or password
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Incorrect username or password'),
-                          ),
-                        );
-                      }
-                    }
-                  },
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(
-                      fontFamily: 'RobotoMono',
-                      color: Colors.black,
-                      fontSize: 20,
-                    ),
                   ),
                 ),
-              ],
-            ),
+              ),
+              SizedBox(height: 10), // Add some spacing between buttons
+              TextButton(
+                onPressed: () {
+                  // Navigate to the signup page (SignupPage)
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignupPage()),
+                  );
+                },
+                child: Text(
+                  'Sign Up',
+                  style: TextStyle(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    fontFamily: 'RobotoMono',
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 19, 114, 0));
+      ),
+      backgroundColor: Color.fromARGB(255, 9, 183, 252),
+    );
   }
 }

@@ -9,7 +9,7 @@ class SkillsScreen extends StatelessWidget {
       ),
       body: Container(
         color: Color.fromARGB(
-            255, 79, 224, 103), // Set the background color to black
+            255, 7, 220, 248), // Set the background color to black
         padding: EdgeInsets.all(20), // Add padding for spacing
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

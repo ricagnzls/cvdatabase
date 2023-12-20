@@ -17,7 +17,7 @@ class Firstpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 79, 224, 103),
+      backgroundColor: Color.fromARGB(255, 0, 250, 237),
       appBar: AppBar(
         title: const Center(
           child: Text(
@@ -34,7 +34,7 @@ class Firstpage extends StatelessWidget {
             Center(
               child: CircleAvatar(
                 backgroundImage: AssetImage(
-                  'images/ben.JPG',
+                  'images/Sean.jpg',
                 ),
                 radius: 60.0,
               ),
@@ -48,7 +48,7 @@ class Firstpage extends StatelessWidget {
               ),
             ),
             Text(
-              "Benedick Fernandez",
+              "kersten calimlim",
               style: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
                   fontSize: 30,
@@ -80,7 +80,7 @@ class Firstpage extends StatelessWidget {
                 Icon(Icons.mail, color: Colors.white),
                 SizedBox(width: 8.0),
                 Text(
-                  "benedickf26@gmail.com",
+                  "seancalimlim26@gmail.com",
                   style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
                 )
               ],
@@ -90,7 +90,7 @@ class Firstpage extends StatelessWidget {
                 Icon(Icons.call, color: Colors.white),
                 SizedBox(width: 8.0),
                 Text(
-                  "09487982270",
+                  "09923040062",
                   style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
                 )
               ],

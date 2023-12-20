@@ -9,7 +9,7 @@ class EducationalBackgroundScreen extends StatelessWidget {
       ),
       body: Container(
         color: Color.fromARGB(
-            255, 79, 224, 103), // Set the background color to white
+            255, 6, 219, 202), // Set the background color to white
         padding: EdgeInsets.all(20), // Add padding for spacing
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -23,11 +23,11 @@ class EducationalBackgroundScreen extends StatelessWidget {
             _buildInfoText("Graduation Year: 2024"),
             SizedBox(height: 20), // Add some spacing between sections
             _buildInfoText("High School Diploma:"),
-            _buildInfoText("Urbiztondo Catholic School"),
+            _buildInfoText("DCNHS School"),
             _buildInfoText("Graduation Year: 2020"),
             SizedBox(height: 20), // Add some spacing between sections
             _buildInfoText("Primary Education:"),
-            _buildInfoText("Urbiztondo Integrated School"),
+            _buildInfoText("MTES"),
             _buildInfoText("Graduation Year: 2014"),
           ],
         ),
