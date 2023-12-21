@@ -17,24 +17,24 @@ class Firstpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 0, 250, 237),
+      backgroundColor: const Color.fromARGB(255, 152, 110, 168),
       appBar: AppBar(
         title: const Center(
           child: Text(
             'Curriculum Vitae',
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 33, 33, 34),
+        backgroundColor: const Color.fromARGB(255, 34, 33, 34),
       ),
       body: Padding(
-        padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
+        padding: const EdgeInsets.fromLTRB(30, 40, 30, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Center(
+            const Center(
               child: CircleAvatar(
                 backgroundImage: AssetImage(
-                  'images/Sean.jpg',
+                  'images/rica.jpg',
                 ),
                 radius: 60.0,
               ),
@@ -48,7 +48,7 @@ class Firstpage extends StatelessWidget {
               ),
             ),
             Text(
-              "kersten calimlim",
+              "Rica Gin Gonzales",
               style: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
                   fontSize: 30,
@@ -65,7 +65,7 @@ class Firstpage extends StatelessWidget {
               ),
             ),
             Text(
-              "IT Specialist",
+              "IT Developer",
               style: TextStyle(
                   color: const Color.fromARGB(255, 0, 0, 0),
                   fontSize: 30,
@@ -80,7 +80,7 @@ class Firstpage extends StatelessWidget {
                 Icon(Icons.mail, color: Colors.white),
                 SizedBox(width: 8.0),
                 Text(
-                  "seancalimlim26@gmail.com",
+                  "ricagonzales97@gmail.com",
                   style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
                 )
               ],
@@ -90,7 +90,7 @@ class Firstpage extends StatelessWidget {
                 Icon(Icons.call, color: Colors.white),
                 SizedBox(width: 8.0),
                 Text(
-                  "09923040062",
+                  "09812902136",
                   style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
                 )
               ],

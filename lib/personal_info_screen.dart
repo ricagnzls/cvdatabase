@@ -9,19 +9,19 @@ class PersonalInfoScreen extends StatelessWidget {
       ),
       body: Container(
         color: Color.fromARGB(
-            255, 13, 203, 228), // Set the background color to white
+            255, 211, 149, 226), // Set the background color to white
         padding: EdgeInsets.all(70), // Add padding for spacing
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             // Add your personal information here as Text widgets in a Column
-            _buildInfoText("Name: kersten sean calimlim"),
-            _buildInfoText("Age: 22 years old"),
-            _buildInfoText("Address: Mangin,Dagupan Pangasinan"),
-            _buildInfoText("Date of Birth: Jan, 11, 2001"),
-            _buildInfoText("Place of Birth: San carlos, Pangasinan"),
-            _buildInfoText("Sex: Male"),
+            _buildInfoText("Name: Rica Gin Gonzales"),
+            _buildInfoText("Age: 21 years old"),
+            _buildInfoText("Address: Banaoang Calasiao Pangasinan"),
+            _buildInfoText("Date of Birth: May, 02, 2002"),
+            _buildInfoText("Place of Birth: Calasiao, Pangasinan"),
+            _buildInfoText("Sex: Female"),
             _buildInfoText("Citizenship: Filipino"),
             _buildInfoText("Civil Status: Single"),
             _buildInfoText("Religion: Roman Catholic"),

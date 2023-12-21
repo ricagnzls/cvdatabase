@@ -42,7 +42,7 @@ class _SignupPageState extends State<SignupPage> {
 
     // Proceed with signup
     final response = await http.post(
-      Uri.parse('http://localhost/sean/signup.php'),
+      Uri.parse('http://localhost/rica/signup.php'),
       body: {
         'username': usernameController.text,
         'password': passwordController.text,
@@ -84,10 +84,10 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 0, 203, 239),
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
         title: Text(
           'Sign Up',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Color.fromARGB(230, 197, 114, 223)),
         ),
       ),
       body: Padding(
@@ -98,7 +98,7 @@ class _SignupPageState extends State<SignupPage> {
             Text(
               'Create new user',
               style: TextStyle(
-                color: const Color.fromARGB(255, 0, 255, 255),
+                color: Color.fromARGB(255, 0, 0, 0),
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -106,13 +106,14 @@ class _SignupPageState extends State<SignupPage> {
             SizedBox(height: 20),
             TextFormField(
               style: TextStyle(
-                color: const Color.fromARGB(255, 0, 247, 255),
+                color: Color.fromARGB(255, 0, 0, 0),
                 fontFamily: 'RobotoMono',
               ),
               controller: usernameController,
               decoration: InputDecoration(
                 labelText: 'Username',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle:
+                    TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
                 errorText: usernameErrorText,
               ),
               validator: (value) {
@@ -124,13 +125,14 @@ class _SignupPageState extends State<SignupPage> {
             ),
             TextFormField(
               style: TextStyle(
-                color: Color.fromARGB(255, 0, 153, 255),
+                color: Color.fromARGB(255, 0, 0, 0),
                 fontFamily: 'RobotoMono',
               ),
               controller: passwordController,
               decoration: InputDecoration(
                 labelText: 'Password',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle:
+                    TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
                 errorText: passwordErrorText,
               ),
               validator: (value) {
@@ -144,7 +146,7 @@ class _SignupPageState extends State<SignupPage> {
             SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 0, 255, 242)),
+                  backgroundColor: Color.fromARGB(255, 82, 82, 82)),
               onPressed: () {
                 // Perform signup when the button is pressed
                 _signup();
@@ -152,7 +154,7 @@ class _SignupPageState extends State<SignupPage> {
               child: Text(
                 'Sign Up',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Color.fromARGB(255, 206, 129, 202),
                   fontFamily: 'RobotoMono',
                 ),
               ),
@@ -160,7 +162,7 @@ class _SignupPageState extends State<SignupPage> {
           ],
         ),
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: Color.fromARGB(255, 203, 144, 218),
     );
   }
 }

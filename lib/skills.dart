@@ -16,10 +16,10 @@ class SkillsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             // Add your skills information here as Text widgets in a Column
-            _buildSkillText("Computer Skills"),
-            _buildSkillText("Adaptability"),
-            _buildSkillText("Decision Making Skills"),
-            _buildSkillText("Creativity"),
+            Center(child: _buildSkillText("Computer Skills")),
+            Center(child: _buildSkillText("Adaptability")),
+            Center(child: _buildSkillText("Decision Making Skills")),
+            Center(child: _buildSkillText("Creativity")),
           ],
         ),
       ),

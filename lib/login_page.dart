@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> _login() async {
     final response = await http.post(
-      Uri.parse('http://localhost/sean/login.php'),
+      Uri.parse('http://localhost/rica/login.php'),
       body: {
         'username': usernameController.text,
         'password': passwordController.text,
@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 0, 102, 255),
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
         title: Text(
           'Login Page',
           style: TextStyle(color: Color.fromARGB(244, 255, 255, 255)),
@@ -82,9 +82,9 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image(
-                image: AssetImage('images/icon.jpg'),
+                image: AssetImage('images/rica.jpg'),
                 height: 100,
-                width: 100,
+                width: 180,
               ),
               TextFormField(
                 style: TextStyle(
@@ -135,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 20),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 1, 255, 255)),
+                    backgroundColor: Color.fromRGBO(199, 141, 221, 1)),
                 onPressed: () {
                   if (_formKey.currentState?.validate() ?? false) {
                     // Form is valid, perform login
@@ -162,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text(
                   'Sign Up',
                   style: TextStyle(
-                    color: const Color.fromARGB(255, 255, 255, 255),
+                    color: Color.fromARGB(255, 0, 0, 0),
                     fontFamily: 'RobotoMono',
                   ),
                 ),
@@ -171,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-      backgroundColor: Color.fromARGB(255, 9, 183, 252),
+      backgroundColor: Color.fromARGB(255, 239, 173, 245),
     );
   }
 }
